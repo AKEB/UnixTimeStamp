@@ -1,0 +1,15 @@
+//
+// Prefix header for all source files of the 'PandaRefUid' target in the 'PandaRefUid' project
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif
+
+static NSString *MRDate(NSString *format, int time) {
+	NSDateFormatter *formatDate = [[NSDateFormatter alloc] init];
+	[formatDate setDateFormat:format];
+	NSString *returnString = [formatDate stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+	[formatDate release];
+	return returnString;
+}
