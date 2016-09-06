@@ -15,6 +15,13 @@
 	
 	NSTextFieldCell 	*intCell1;
 	NSTextFieldCell 	*intCell2;
+	NSTextFieldCell     *Start_Date;
+	NSTextFieldCell     *Start_Time;
+	NSTextFieldCell     *End_Date;
+	NSTextFieldCell     *End_Time;
+	NSTextFieldCell     *End_Date2;
+	NSTextFieldCell     *End_Time2;
+	
 	
 	NSTextFieldCell *calculatorResultCell;
 	NSTextFieldCell *calculatorResultCell2;
@@ -37,6 +44,14 @@
 @property (strong) IBOutlet NSTextFieldCell *fullDate;
 @property (strong) IBOutlet NSTextFieldCell *intCell1;
 @property (strong) IBOutlet NSTextFieldCell *intCell2;
+@property (strong) IBOutlet NSTextFieldCell *Start_Date;
+@property (strong) IBOutlet NSTextFieldCell *Start_Time;
+
+@property (strong) IBOutlet NSTextFieldCell *End_Date;
+@property (strong) IBOutlet NSTextFieldCell *End_Time;
+@property (strong) IBOutlet NSTextFieldCell *End_Date2;
+@property (strong) IBOutlet NSTextFieldCell *End_Time2;
+
 
 @property (strong) IBOutlet NSTextFieldCell *calculatorResultCell;
 @property (strong) IBOutlet NSTextFieldCell *calculatorResultCell2;
@@ -48,4 +63,6 @@
 -(IBAction)Calculate:(id)sender;
 
 -(void)ChangeTime:(NSString *)unixTime;
+-(void) showOtherDates;
+
 @end

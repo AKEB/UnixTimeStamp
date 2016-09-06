@@ -17,6 +17,8 @@
 		D1326E16141906BC0099609F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D1326E15141906BC0099609F /* Icon.png */; };
 		D1326E2214190F7B0099609F /* INTFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D1326E2014190F7B0099609F /* INTFormatter.m */; };
 		D1326E2314190F7B0099609F /* NumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D1326E2114190F7B0099609F /* NumberFormatter.m */; };
+		D17B71711D7ECCED00A55A3F /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17B71701D7ECCED00A55A3F /* Icons.xcassets */; };
+		D17B71731D7ECE0200A55A3F /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = D17B71721D7ECE0200A55A3F /* iTunesArtwork@2x */; };
 		D1B55EB614D01FFE005636AF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D1B55EB514D01FFE005636AF /* iTunesArtwork */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		D1326E1F14190F7B0099609F /* NumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberFormatter.h; sourceTree = "<group>"; };
 		D1326E2014190F7B0099609F /* INTFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INTFormatter.m; sourceTree = "<group>"; };
 		D1326E2114190F7B0099609F /* NumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberFormatter.m; sourceTree = "<group>"; };
+		D17B71701D7ECCED00A55A3F /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
+		D17B71721D7ECE0200A55A3F /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		D1B55EB514D01FFE005636AF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +62,8 @@
 		D1326DE3141900C60099609F = {
 			isa = PBXGroup;
 			children = (
+				D17B71701D7ECCED00A55A3F /* Icons.xcassets */,
+				D17B71721D7ECE0200A55A3F /* iTunesArtwork@2x */,
 				D1B55EB514D01FFE005636AF /* iTunesArtwork */,
 				D1326E15141906BC0099609F /* Icon.png */,
 				D1326E131419063F0099609F /* Icon.icns */,
@@ -149,6 +155,11 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = AKEB.RU;
+				TargetAttributes = {
+					D1326DED141900C60099609F = {
+						DevelopmentTeam = 2DP9NNA24K;
+					};
+				};
 			};
 			buildConfigurationList = D1326DE8141900C60099609F /* Build configuration list for PBXProject "UnixTimeStamp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -172,9 +183,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17B71711D7ECCED00A55A3F /* Icons.xcassets in Resources */,
 				D1326DFD141900C60099609F /* InfoPlist.strings in Resources */,
 				D1326E03141900C60099609F /* Credits.rtf in Resources */,
 				D1326E09141900C60099609F /* MainMenu.xib in Resources */,
+				D17B71731D7ECE0200A55A3F /* iTunesArtwork@2x in Resources */,
 				D1326E141419063F0099609F /* Icon.icns in Resources */,
 				D1326E16141906BC0099609F /* Icon.png in Resources */,
 				D1B55EB614D01FFE005636AF /* iTunesArtwork in Resources */,
@@ -274,14 +287,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_IDENTITY = "Mac Developer: Вадим Бабаджанян (AZRC5H56D3)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2DP9NNA24K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PandaRefUid/UnixTimeStamp-Prefix.pch";
 				INFOPLIST_FILE = "PandaRefUid/UnixTimeStamp-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = UnixTimeStamp;
-				PROVISIONING_PROFILE = "1A226BE4-C621-44A9-B58C-3D1BB04CA822";
+				PROVISIONING_PROFILE = "4b8c867c-da7c-40d6-89ad-ee240e89cae9";
+				PROVISIONING_PROFILE_SPECIFIER = "Unixtimestamp Developer";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -291,13 +307,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Вадим Бабаджанян";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = 2DP9NNA24K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PandaRefUid/UnixTimeStamp-Prefix.pch";
 				INFOPLIST_FILE = "PandaRefUid/UnixTimeStamp-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = UnixTimeStamp;
-				PROVISIONING_PROFILE = "5D1F9B75-9E12-478C-84D3-74147566D608";
+				PROVISIONING_PROFILE = "a18b8060-127f-4442-96bb-c46f0916bece";
+				PROVISIONING_PROFILE_SPECIFIER = "UnixTimestamp AppStore";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};

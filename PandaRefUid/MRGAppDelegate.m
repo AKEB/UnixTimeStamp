@@ -10,7 +10,7 @@
 
 @implementation MRGAppDelegate
 
-@synthesize window = _window, statusMenu, myMenuStatusItem,dateCell,unixTimeStampCell,fullDate,intCell1,intCell2,calculatorResultCell,calculatorResultCell2;
+@synthesize window = _window, statusMenu, myMenuStatusItem,dateCell,unixTimeStampCell, fullDate, intCell1, Start_Date, End_Date, End_Time, End_Date2, End_Time2, Start_Time,intCell2,calculatorResultCell,calculatorResultCell2;
 
 - (void)dealloc {
 	[_window release];
@@ -22,6 +22,17 @@
 	opTag = 1;
 	calculatorResultCell.title = @"";
 	calculatorResultCell2.title = @"";
+	
+	Start_Date.title = @"";
+	Start_Time.title = @"";
+	
+	End_Date.title = @"";
+	End_Time.title = @"";
+	
+	End_Date2.title = @"";
+	End_Time2.title = @"";
+	
+	
 	
 	// Insert code here to initialize your application
 	[_window setDelegate:self];
@@ -60,6 +71,43 @@
 	
 	NSLog(@"%@ -> %d",dateString,(int)[d timeIntervalSince1970]);
 	
+	[self showOtherDates];
+}
+
+-(void) showOtherDates {
+	NSString *date = [NSString stringWithString:[dateCell title]];
+	NSDateFormatter *inFormat = [[NSDateFormatter alloc] init];
+	[inFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	NSDate *parsed = [inFormat dateFromString:date];
+	
+	NSDateFormatter *outFormat = [[NSDateFormatter alloc] init];
+	[outFormat setDateFormat:@"yyyy-MM-dd 00:00:00"];
+	NSString *dateString = [outFormat stringFromDate:parsed];
+	
+	parsed = [inFormat dateFromString:dateString];
+	
+	NSLog(@"%@ -> %d",dateString,(int)[parsed timeIntervalSince1970]);
+	
+	Start_Date.title=[NSString stringWithFormat:@"%@",dateString];
+	Start_Time.title=[NSString stringWithFormat:@"%d",(int)[parsed timeIntervalSince1970]];
+	
+	NSDate *d = [NSDate dateWithTimeIntervalSince1970:((int)[parsed timeIntervalSince1970]+86399)];
+	NSDate *d2 = [NSDate dateWithTimeIntervalSince1970:((int)[parsed timeIntervalSince1970]+86400)];
+	
+	NSString *dateString2 = [inFormat stringFromDate:d];
+	NSString *dateString3 = [inFormat stringFromDate:d2];
+	
+	NSLog(@"%@ -> %d",dateString2,(int)[d timeIntervalSince1970]);
+
+	NSLog(@"%@ -> %d",dateString3,(int)[d2 timeIntervalSince1970]);
+	
+	End_Date.title=[NSString stringWithFormat:@"%@",dateString2];
+	End_Time.title=[NSString stringWithFormat:@"%d",(int)[d timeIntervalSince1970]];
+	
+	End_Date2.title=[NSString stringWithFormat:@"%@",dateString3];
+	End_Time2.title=[NSString stringWithFormat:@"%d",(int)[d2 timeIntervalSince1970]];
+	
+
 }
 
 
@@ -81,6 +129,7 @@
 		fullDate.title = MRDate(@"EEEE, MMMM d, yyyy H:mm:ss z VVVV", (int)[parsed timeIntervalSince1970]);
 		unixTimeStampCell.title = [NSString stringWithFormat:@"%d",(int)[parsed timeIntervalSince1970]];
 	}
+	[self showOtherDates];
 }
 
 -(IBAction)ChangeCalcOp:(id)sender {
