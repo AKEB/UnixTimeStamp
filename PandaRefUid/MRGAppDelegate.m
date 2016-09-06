@@ -7,17 +7,61 @@
 //
 
 #import "MRGAppDelegate.h"
+#import "TSTapstream.h"
+
 
 @implementation MRGAppDelegate
 
-@synthesize window = _window, statusMenu, myMenuStatusItem,dateCell,unixTimeStampCell, fullDate, intCell1, Start_Date, End_Date, End_Time, End_Date2, End_Time2, Start_Time,intCell2,calculatorResultCell,calculatorResultCell2;
+@synthesize window = _window, statusMenu, myMenuStatusItem,dateCell,unixTimeStampCell, fullDate, intCell1, Start_Date, End_Date, End_Time, End_Date2, End_Time2, Start_Time,intCell2,calculatorResultCell,calculatorResultCell2,HideFromDock;
 
 - (void)dealloc {
 	[_window release];
     [super dealloc];
 }
+
+- (IBAction)hideFromDock:(id)sender {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	
+	if (sender == nil) {
+		if ([userDefaults boolForKey:@"HideFromDock"]) {
+			[NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+			HideFromDock.title = @"Show in Dock";
+		} else {
+			[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+			HideFromDock.title = @"Hide from Dock";
+		}
+		
+		[[NSApplication sharedApplication] stopModal];
+	} else {
+		if ([userDefaults boolForKey:@"HideFromDock"]) {
+			
+			TSEvent *e = [TSEvent eventWithName:@"mac-unixtimestamp-showdock" oneTimeOnly:NO];
+			[[TSTapstream instance] fireEvent:e];
+			
+			NSLog(@"Show in Dock");
+			[userDefaults setBool:NO forKey:@"HideFromDock"];
+		} else {
+			
+			TSEvent *e = [TSEvent eventWithName:@"mac-unixtimestamp-hidedock" oneTimeOnly:NO];
+			[[TSTapstream instance] fireEvent:e];
+			
+			
+			NSLog(@"Hide from Dock");
+			[userDefaults setBool:YES forKey:@"HideFromDock"];
+		}
+		[userDefaults synchronize];
+		[self hideFromDock:nil];
+	}
+}
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	
+	
+	[self hideFromDock:nil];
+	
+	TSConfig *config = [TSConfig configWithDefaults];
+	[TSTapstream createWithAccountName:@"unixtimestamp" developerSecret:@"UdawggWLSCuh4_aJFv0cYQ" config:config];
+	
 	
 	opTag = 1;
 	calculatorResultCell.title = @"";
@@ -33,15 +77,19 @@
 	End_Time2.title = @"";
 	
 	
-	
 	// Insert code here to initialize your application
 	[_window setDelegate:self];
+	
+	
+	
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setMenu:statusMenu];
 	[statusItem setImage:[NSImage imageNamed:@"Icon.png"]];
 	[statusItem setHighlightMode:YES];
 	
 	[[NSApplication sharedApplication] stopModal];
+	//[NSApp setPresentationOptions: NSApplicationPresentationHideMenuBar | NSApplicationPresentationHideDock];
+	
 	
 	
 	
@@ -51,6 +99,10 @@
 }
 
 -(IBAction)NowDate:(id)sender {
+	
+	TSEvent *e = [TSEvent eventWithName:@"mac-unixtimestamp-now" oneTimeOnly:NO];
+	[[TSTapstream instance] fireEvent:e];
+	
 	[self ChangeTime:[NSString stringWithFormat:@"%d",(int)[[NSDate date] timeIntervalSince1970]]];
 	unixTimeStampCell.title = [NSString stringWithFormat:@"%d",(int)[[NSDate date] timeIntervalSince1970]];
 
@@ -75,6 +127,7 @@
 }
 
 -(void) showOtherDates {
+	
 	NSString *date = [NSString stringWithString:[dateCell title]];
 	NSDateFormatter *inFormat = [[NSDateFormatter alloc] init];
 	[inFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -150,6 +203,11 @@
 	NSLog(@"%@",intCell1.title);
 	NSLog(@"%@",intCell2.title);
 	
+	TSEvent *e = [TSEvent eventWithName:@"mac-unixtimestamp-calculate" oneTimeOnly:NO];
+	[[TSTapstream instance] fireEvent:e];
+
+	
+	
 	calculatorResultCell.title = @"";
 	calculatorResultCell2.title = @"";
 	
@@ -224,25 +282,41 @@
 
 
 - (void)windowWillClose:(NSNotification *)aNotification {
-	
+	NSLog(@"windowWillClose");
 }
 
 - (BOOL)windowShouldClose:(id)sender {
+	NSLog(@"windowShouldClose");
+	
+	TSEvent *e = [TSEvent eventWithName:@"mac-unixtimestamp-hide" oneTimeOnly:NO];
+	[[TSTapstream instance] fireEvent:e];
+	
 	[[NSApplication sharedApplication] hide:self];
 	return NO;
 }
 
 -(IBAction) applicationUnHide:(id)sender {
+	NSLog(@"applicationUnHide");
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[[NSApplication sharedApplication] unhide:self];
+
+	TSEvent *e = [TSEvent eventWithName:@"mac-unixtimestamp-unhide" oneTimeOnly:NO];
+	[[TSTapstream instance] fireEvent:e];
+	
 }
 
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
 	return YES;
 }
+
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+	NSLog(@"applicationShouldHandleReopen");
 	[[NSApplication sharedApplication] unhide:self];
+	
+	TSEvent *e = [TSEvent eventWithName:@"mac-unixtimestamp-unhide" oneTimeOnly:NO];
+	[[TSTapstream instance] fireEvent:e];
+	
 	return YES;
 }
 

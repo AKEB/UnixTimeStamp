@@ -22,6 +22,7 @@
 	NSTextFieldCell     *End_Date2;
 	NSTextFieldCell     *End_Time2;
 	
+	NSMenuItem          *HideFromDock;
 	
 	NSTextFieldCell *calculatorResultCell;
 	NSTextFieldCell *calculatorResultCell2;
@@ -39,6 +40,8 @@
 @property (strong) IBOutlet NSWindow *window;
 @property (strong) IBOutlet NSMenu *statusMenu;
 @property (strong) IBOutlet NSMenuItem *myMenuStatusItem;
+@property (strong) IBOutlet NSMenuItem *HideFromDock;
+
 @property (strong) IBOutlet NSTextFieldCell *dateCell;
 @property (strong) IBOutlet NSTextFieldCell *unixTimeStampCell;
 @property (strong) IBOutlet NSTextFieldCell *fullDate;
@@ -61,6 +64,8 @@
 -(IBAction)ChangeCalcOp:(id)sender;
 -(IBAction)ChangeDate:(id)sender;
 -(IBAction)Calculate:(id)sender;
+
+- (IBAction)hideFromDock:(id)sender;
 
 -(void)ChangeTime:(NSString *)unixTime;
 -(void) showOtherDates;
