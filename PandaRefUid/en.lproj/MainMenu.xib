@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -97,7 +97,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="UnixTimeStamp" hidesOnDeactivate="YES" animationBehavior="default" id="371">
+        <window title="UnixTimeStamp" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="500" height="380"/>
@@ -106,7 +106,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <box autoresizesSubviews="NO" title="Converter" borderType="line" id="577">
+                    <box autoresizesSubviews="NO" borderType="line" title="Converter" id="577">
                         <rect key="frame" x="5" y="154" width="488" height="224"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="b7y-q3-jmB">
@@ -262,7 +262,7 @@
                         </view>
                         <font key="titleFont" size="13" name=".AppleSystemUIFont"/>
                     </box>
-                    <box autoresizesSubviews="NO" title="Calculator" borderType="line" id="582">
+                    <box autoresizesSubviews="NO" borderType="line" title="Calculator" id="582">
                         <rect key="frame" x="6" y="16" width="488" height="134"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="d2A-eB-rFN">
